@@ -10,6 +10,7 @@ import java.net.URISyntaxException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -37,7 +38,8 @@ public class ItemLabel extends JLabel {
 					try {
 						Desktop.getDesktop().browse(new URI(ItemLabel.this.link));
 					} catch (IOException | URISyntaxException e1) {
-						e1.printStackTrace();
+						JOptionPane.showMessageDialog(ItemLabel.this, e1.getMessage(), "Something happened", JOptionPane.WARNING_MESSAGE);
+					
 					}
 				else
 					ItemLabel.this.switchDetail();

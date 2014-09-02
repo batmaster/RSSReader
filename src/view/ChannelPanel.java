@@ -1,15 +1,24 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Label;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
 
 import model.Channel;
 
@@ -26,8 +35,32 @@ public class ChannelPanel extends JPanel {
 	}
 
 	private void initComponents() {
-		setLayout(new FlowLayout());
-		setBorder(BorderFactory.createEmptyBorder());
+		setLayout(new FlowLayout(FlowLayout.LEADING, 10, 0));
+		
+		addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				if (SwingUtilities.isRightMouseButton(e))
+					try {
+						Desktop.getDesktop().browse(new URI(ChannelPanel.this.link));
+					} catch (IOException | URISyntaxException e1) {
+						JOptionPane.showMessageDialog(ChannelPanel.this, e1.getMessage(), "Something happened", JOptionPane.WARNING_MESSAGE);
+					}
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) { }
+			
+			@Override
+			public void mouseExited(MouseEvent e) { }
+			
+			@Override
+			public void mouseEntered(MouseEvent e) { }
+			
+			@Override
+			public void mouseClicked(MouseEvent e) { }
+		});
 	}
 	
 	public void set(String title, String description, String link) {
