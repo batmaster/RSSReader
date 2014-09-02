@@ -19,8 +19,6 @@ public class FeedsPanel extends JPanel {
 
 	private void initComponents() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Feeds"));
-		add(new ItemLabel("title", "link", "description", "pubDate"));
 	}
 	
 	public void addItem(Item item) {

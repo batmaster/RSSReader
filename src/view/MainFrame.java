@@ -1,7 +1,9 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -11,12 +13,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.xml.bind.JAXBException;
 
 import controller.RssReader;
@@ -35,7 +40,8 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 		super("RSS Reader");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setPreferredSize(new Dimension(750, 600));
+		setPreferredSize(new Dimension(750, 670));
+		setResizable(false);
 		
 		initComponents();
 		pack();
@@ -43,12 +49,12 @@ public class MainFrame extends JFrame {
 	}
 
 	private void initComponents() {
-		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+		setLayout(new FlowLayout());
 		
 		topPanel = new JPanel(new FlowLayout());
 		
 		urlTextField = new JTextField(50);
-		urlTextField.setText("http://se.cpe.ku.ac.th/219451/data/sample.xml");
+		urlTextField.setText("http://feeds.bbci.co.uk/news/education/rss.xml");
 		urlTextField.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -91,12 +97,20 @@ public class MainFrame extends JFrame {
 		add(topPanel);
 		
 		channelPanel= new ChannelPanel("Title", "description", "link");
+		channelPanel.setPreferredSize(new Dimension(750, 60));
 		add(channelPanel);
 		
 		feedPanel = new FeedsPanel();
 		JScrollPane scrollPane = new JScrollPane(feedPanel);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(10);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Feeds"));
+		scrollPane.setPreferredSize(new Dimension(750, 500));
 		add(scrollPane);
+		
+		JLabel footer = new JLabel("Right-click to open in browser.");
+		add(footer);
 	}
 
 	private void fetch() {
