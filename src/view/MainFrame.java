@@ -18,6 +18,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -30,6 +31,12 @@ import model.Channel;
 import model.Item;
 import model.Rss;
 
+/**
+ * Main frame of the app.
+ * 
+ * @author Poramate Homprakob 5510546077
+ *
+ */
 public class MainFrame extends JFrame {
 	
 	private JPanel topPanel;
@@ -38,6 +45,9 @@ public class MainFrame extends JFrame {
 	private ChannelPanel channelPanel;
 	private FeedsPanel feedPanel;
 	
+	/**
+	 * Constructor require nothing.
+	 */
 	public MainFrame() {
 		super("RSS Reader");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -130,7 +140,7 @@ public class MainFrame extends JFrame {
 			repaint();
 			
 		} catch (MalformedURLException | JAXBException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(MainFrame.this, e.getMessage(), "Something happened", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 }

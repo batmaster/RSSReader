@@ -22,12 +22,24 @@ import javax.swing.border.EmptyBorder;
 
 import model.Channel;
 
+/**
+ * A panel showing channel description.
+ * 
+ * @author Poramate Homprakob 5510546077
+ *
+ */
 public class ChannelPanel extends JPanel {
 	
 	private String title;
 	private String description;
 	private String link;
 	
+	/**
+	 * Constructor requiring all attribute date in Channel object.
+	 * @param title title of the channel
+	 * @param description description of the channel
+	 * @param link link of the channel
+	 */
 	public ChannelPanel(String title, String description, String link) {
 		set("Please input RSS link.", "", "");
 		initComponents();
@@ -63,6 +75,12 @@ public class ChannelPanel extends JPanel {
 		});
 	}
 	
+	/**
+	 * Set description information of the channel.
+	 * @param title title of the channel
+	 * @param description description of the channel
+	 * @param link link of the channel
+	 */
 	public void set(String title, String description, String link) {
 		this.title = title;
 		this.description = description;
