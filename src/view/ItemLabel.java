@@ -78,6 +78,10 @@ public class ItemLabel extends JLabel {
 		});
 	}
 	
+	/**
+	 * Set content that to the ItemLabel.
+	 * This make the label to be able to switch showing details or not.
+	 */
 	private void setContent() {
 		if (swit)
 			setText(String.format("<html><div style='background:#62C2CC; width:550px; margin:4px; padding:4px'> <h2>%s</h2><br> <i><p>%s</p></i><br> <h3>%s</h3><br> <p>%s</p> </div></html>", title, pubDate, (enclosure == null ? "" : "<a href='" + enclosure.getUrl() + "'>" + enc + "</a> ") + description, link));
@@ -85,6 +89,9 @@ public class ItemLabel extends JLabel {
 			setText(String.format("<html><div style='background:#E4F6F8; width:550px; margin:4px; padding:4px'> <h2>%s</h2><br> <i><p>%s</p></i><br> </div></html>", title, pubDate));
 	}
 	
+	/**
+	 * Switch to show details in the label or not.
+	 */
 	private void switchDetail() {
 		swit = !swit;
 		setContent();

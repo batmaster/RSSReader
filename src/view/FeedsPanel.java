@@ -26,6 +26,9 @@ public class FeedsPanel extends JPanel {
 		setVisible(true);
 	}
 
+	/**
+	 * Initializes components.
+	 */
 	private void initComponents() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 	}

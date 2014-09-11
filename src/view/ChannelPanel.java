@@ -38,6 +38,9 @@ public class ChannelPanel extends JPanel {
 		setVisible(true);
 	}
 
+	/**
+	 * Initializes components.
+	 */
 	private void initComponents() {
 		setLayout(new FlowLayout(FlowLayout.LEADING, 10, 0));
 		

@@ -15,11 +15,11 @@ import model.Rss;
  * @author Poramate Homprakob 5510546077
  *
  */
-public class RssReader {
+public class RssReaderController {
 	
-	private static RssReader instance;
+	private static RssReaderController instance;
 	
-	private RssReader() {
+	private RssReaderController() {
 		
 	}
 	
@@ -27,9 +27,9 @@ public class RssReader {
 	 * To support the Singleton pattern.
 	 * @return the instance object of this class
 	 */
-	public static RssReader getInstance() {
+	public static RssReaderController getInstance() {
 		if (instance == null)
-			instance = new RssReader();
+			instance = new RssReaderController();
 		return instance;
 	}
 	

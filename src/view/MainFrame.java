@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.xml.bind.JAXBException;
 
-import controller.RssReader;
+import controller.RssReaderController;
 import model.Channel;
 import model.Item;
 import model.Rss;
@@ -41,20 +41,26 @@ public class MainFrame extends JFrame {
 	private ChannelPanel channelPanel;
 	private FeedsPanel feedPanel;
 	
+	private RssReaderController rssReaderController;
+	
 	/**
-	 * Constructor require nothing.
+	 * Constructor require RssReaderController.
 	 */
-	public MainFrame() {
+	public MainFrame(RssReaderController rssReaderController) {
 		super("RSS Reader");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setPreferredSize(new Dimension(750, 670));
 		setResizable(false);
+		this.rssReaderController = rssReaderController;
 		
 		initComponents();
 		pack();
 		setVisible(true);
 	}
 
+	/**
+	 * Initializes components in MainFrame.
+	 */
 	private void initComponents() {
 		setLayout(new FlowLayout());
 		
@@ -120,10 +126,14 @@ public class MainFrame extends JFrame {
 		add(footer);
 	}
 
+	/**
+	 * Add ItemLabel of each feed into FeedsPanel
+	 * by using string from urlTextField to get Rss from singleton RssReaderController
+	 */
 	private void fetch() {
 		Rss rss;
 		try {
-			rss = RssReader.getInstance().getRss(new URL(urlTextField.getText()));
+			rss = rssReaderController.getRss(new URL(urlTextField.getText()));
 			Channel channel = rss.getChannel();
 			channelPanel.set(channel.getTitle(), channel.getDescription(), channel.getLink());
 			feedPanel.clear();
